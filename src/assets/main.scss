@@ -1,0 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:400,700');
+
+$dark_purple: #71368a;
+
+$family-sans-serif: "Montserrat", sans-serif;
+$primary: $dark_purple;
+$link: $dark_purple;
+
+@import "~bulma/bulma";
