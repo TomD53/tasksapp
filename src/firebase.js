@@ -1,5 +1,6 @@
 import firebase from "firebase/app";
 import "firebase/database"
+import "firebase/analytics"
 
 var firebaseConfig = {
     apiKey: "AIzaSyDQoq8QPBVLbSYXZaNmF9exbQbkRqghDIY",
@@ -14,5 +15,6 @@ var firebaseConfig = {
 };
 
 var fb = firebase.initializeApp(firebaseConfig);
+fb.analytics();
 
 export default fb;
