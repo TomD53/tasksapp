@@ -1,5 +1,13 @@
 <template>
-  <div v-if="name && description" :style="active ? 'border-left: 5px solid rgba(0,255,0, 0.5)' : 'border-left: 5px solid rgba(255,0,0, 0.5)'">
+  <div
+    v-if="name && description"
+    :style="
+      active
+        ? 'border-left: 5px solid rgba(0,255,0, 0.5)'
+        : 'border-left: 5px solid rgba(255,0,0, 0.5)'
+    "
+    @dblclick="toggleActive"
+  >
     <span class="subtitle">{{ name }}</span>
     <span class="icon right clickable" @click="deleteTask">
       <i class="fas fa-times has-text-danger"></i>
@@ -17,7 +25,7 @@ export default {
     description: String,
     id: String,
     active: Boolean,
-    preview: Boolean
+    preview: Boolean,
   },
   methods: {
     async deleteTask() {
@@ -28,9 +36,20 @@ export default {
       } catch (e) {
         console.log(e);
       }
-    }
-  }
-}
+    },
+    async toggleActive() {
+      const db = fb.database();
+      const tasks_ref = db.ref();
+      try {
+        await tasks_ref.child("tasks/" + this.id).update({
+          active: !this.active,
+        });
+      } catch (e) {
+        console.log(e);
+      }
+    },
+  },
+};
 </script>
 
 
@@ -40,6 +59,7 @@ div {
   border-radius: 10px;
   padding: 10px;
   margin: 10px;
+  user-select: none;
 }
 
 .right {

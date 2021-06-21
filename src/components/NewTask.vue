@@ -46,6 +46,7 @@
         </button>
       </div>
     </div>
+    <p class="help is-info" v-if="formFilled">Press enter whilst in the form to submit</p>
   </div>
 </template>
 

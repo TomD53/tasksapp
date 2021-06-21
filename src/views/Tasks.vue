@@ -15,6 +15,7 @@
             :preview="false"
           />
         </div>
+        <p class="help is-info">Double click tasks to change their active status</p>
       </div>
       <div v-else>
         <p class="title">No tasks ;(</p>
@@ -66,3 +67,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.help {
+  margin: 10px;
+}
+</style>
