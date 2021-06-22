@@ -1,6 +1,22 @@
 {
   "rules": {
-    ".read": true,
-    ".write": true
+    "tasks": {
+      "$user_id": {
+        ".read": "$user_id == auth.uid",
+        ".write": "$user_id == auth.uid",
+        "$task_id": {
+          ".validate": "newData.hasChildren(['active', 'description', 'name'])",
+          "active": {
+            ".validate": "newData.isBoolean()"
+          },
+          "description": {
+            ".validate": "newData.isString() && newData.val().length < 250"
+          },
+          "name": {
+            ".validate": "newData.isString() && newData.val().length < 50"
+          }
+        }
+      }
+    }
   }
 }
