@@ -77,11 +77,13 @@ export default {
       if (!this.formFilled) {
         return false;
       }
+
+      const uid = fb.auth().currentUser.uid;
       const db = fb.database();
       const tasks_ref = db.ref();
       var newTaskKey = tasks_ref.child("tasks").push().key;
       try {
-        await tasks_ref.child("tasks/" + newTaskKey).update({
+        await tasks_ref.child(`/tasks/${uid}/${newTaskKey}`).update({
           name: this.name,
           description: this.description,
           active: this.active,

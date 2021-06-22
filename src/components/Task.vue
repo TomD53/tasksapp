@@ -29,19 +29,21 @@ export default {
   },
   methods: {
     async deleteTask() {
+      const uid = fb.auth().currentUser.uid;
       const db = fb.database();
       const tasks_ref = db.ref();
       try {
-        await tasks_ref.child("tasks/" + this.id).remove();
+        await tasks_ref.child(`tasks/${uid}/${this.id}`).remove();
       } catch (e) {
         console.log(e);
       }
     },
     async toggleActive() {
+      const uid = fb.auth().currentUser.uid;
       const db = fb.database();
       const tasks_ref = db.ref();
       try {
-        await tasks_ref.child("tasks/" + this.id).update({
+        await tasks_ref.child(`tasks/${uid}/${this.id}`).update({
           active: !this.active,
         });
       } catch (e) {
